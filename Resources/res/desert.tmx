@@ -11,15 +11,15 @@
  </tileset>
  <layer name="Ground" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJztmMkOgjAURbvTsBBX4pAgigNOwP9/nc9IF7609BX72josTrSJlcPtJW3IhRA5IxMgBabM1xlCrfBbR+D1Kfk9spoBGTCPwMfGm+N/F8DSglU3L/F03xtga0HJ6Ff1+O2AM7AP6NeXX4nGIf0OEfq1yAv7XcWz/zfPfrhzeGzKC/fShZ/qOahQfvK7yQ/n6iq/IxpLH9v8uNcXe2JO3fpRuTjwG3WMHd2jinf8UvF6vkgM5MTf6eb1zVf5ZSLM+QL7mDI2dc+1l+5TUgj1OYfbk+onHX3lNsTPB3Xkfrb5tQGcmgj9dL2OxY+yvokI378GjXUeMT0f1D1Qt9a2eytlH+XoiO+5LtbAlNu351dYXOPX+4ezor43Ct0/yhqH6h9nfr769+d7uAM+lLEK
+   eJztmMsOwiAQRdlpurCufCb1rfXd//86MZaFE2AYnKEYXZwoqZTDnakSK6VUJchAU2qGwuvEcLP4LTLw+pb8nlmNNGPNJAMfirfEfaeaGYF5O69ItO+VZk1gI+hXe/y2mpNm16GfL78NGHfpt8/QrwFe0O+iXv1/TewHew6OsbxgX3L42Z6DGuRn3mN+MFeu/A5gbHyo+UnXF3pCjm39Qjkz+PVa+kx7tPGJX6nezxcFQhX4Odc833yb31h1c76APljGWO9xe7leDUtlP+dIe4b6GcdUucX4peCWuR81v6YDp3uGfq6+zsUvpL6Fius/2z048a1J8ePKyXUd83bVOmT/IdexWny6d465Et9vsfm5cpPw4+o7qt+SuEbs85lrflievqxC/zeSyI2yZ6zGnP0nVZNUvxt/fpsHJI6s6Q==
   </data>
  </layer>
  <objectgroup name="Objects">
-  <object id="7" name="SpawnPoint" x="707" y="802" width="25" height="25"/>
+  <object id="7" name="SpawnPoint" x="195" y="1123" width="25" height="25"/>
  </objectgroup>
  <layer name="Meta" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt11EKgDAMBNFcKfe/nL8iatquNAvOAxHE2qEUxQgAnbI7oECfhj4NfRr6NH/qy+IYve9p3Nt4J9cel74szt3o09CnoU9z7snw7Ru9vtvMN3DlGSvf2q8pc+zqW1031u/+HcD+m5vDef8pnNfP8T8C3g4cFR9l
+   eJztlVEKACEIRL2S97/c/kZktk6l0DyIPjbr7VAoQgjJRLMFHOiHQT8M+mHQD+MlP3XG6jqrblZfid6nip86czb0w6AfBv0wWh+VmN9oj51jduYfPwQvF6S/rfz/yvd+3tVvd9aeuP/R/EY+p/zQ2ht+yPusmp+11837F8mtSn6WT4X8In2DvM0Hsh8pWQ==
   </data>
  </layer>
 </map>

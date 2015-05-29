@@ -16,17 +16,17 @@ void AStarNode::setPos(int xx, int yy)
 	y = yy;
 }
 
-void AStarNode::setF(int ff)
+void AStarNode::setF(float ff)
 {
 	f = ff;
 }
 
-void AStarNode::setG(int gg)
+void AStarNode::setG(float gg)
 {
 	g = gg;
 }
 
-void AStarNode::setH(int hh)
+void AStarNode::setH(float hh)
 {
 	h = hh;
 }

@@ -178,19 +178,11 @@ void TileMapScene::onTouchEnded(Touch* ptouch,Event* pEvent)
 			auto dist = playerTileCoord.distance(tileCoord);
 			if(playerTileCoord==tileCoord)
 				return;
-
-			//player->stopAllActions();
-			//auto moveTo = MoveTo::create(moveDistance/100,Vec2(movePoint.x,movePoint.y));
-			//auto moveTo = MoveTo::create(dist/4,Vec2(tileCoord.x*32+bgOrigin.x,(39-tileCoord.y)*32+bgOrigin.y));
-			//player->runAction(moveTo);
-
-
 			this->unscheduleAllSelectors();
 			vec.clear();
 			Astar(playerTileCoord,tileCoord);
 			int c = count;
 			this->schedule(schedule_selector(TileMapScene::move),0.2,c,0);
-			//this->scheduleOnce(schedule_selector(TileMapScene::clearVec),c-1);
 		}
 	}
 }
@@ -218,22 +210,6 @@ void TileMapScene::hitWall(float)
 	}
 }
 
-//struct compare
-//{
-//bool operator()(const AStarNode &left, const AStarNode &right) const
-//{
-//	if(left.x<right.x)
-//		return true;
-//	else if(left.x == right.x&&left.y<right.y)
-//		return true;
-//	//else if(left.x == right.x&&left.y==right.y&&left.px<right.px)
-//	//	return true;
-//	//else if(left.x == right.x&&left.y==right.y&&left.px==right.px&&left.py<right.py)
-//	//	return true;
-//	else return false;
-//}
-//};
-
 AStarNode top(std::set<AStarNode>& open)
 {
 	std::set<AStarNode>::iterator temp;
@@ -253,9 +229,7 @@ AStarNode top(std::set<AStarNode>& open)
 void TileMapScene::Astar(Point S,Point E)
 {
 	std::set<AStarNode> open;
-	//std::set<AStarNode> open;
 	std::set<AStarNode> close;
-	//std::vector<AStarNode> vec;
 	AStarNode start;
 	AStarNode end;
 	AStarNode t;
@@ -271,8 +245,8 @@ void TileMapScene::Astar(Point S,Point E)
 	start.setPPos(sx,sy);
 	end.setPos(ex,ey);
 	open.insert(start);
-	int a[] = {-1, 0, 1, 0};
-	int b[] = {0, 1, 0, -1};
+	int a[] = {-1, 0, 1, 0, -1,-1, 1, 1};
+	int b[] = { 0, 1, 0,-1, -1, 1,-1, 1};
 	while(!open.empty())
 	{
 		cur = top(open);
@@ -284,41 +258,29 @@ void TileMapScene::Astar(Point S,Point E)
 		}
 		CCLOG ("OPENSIZE:%d\n", open.size());
 		CCLOG ("CLOSESIZE:%d\n", close.size());
-		for(int i = 0; i < 4; ++i)
+		for(int i = 0; i < 8; ++i)
 		{
 			if(cur.x + a[i] >= 0 && cur.x +a[i]<=39 && cur.y + b[i] >= 0 && cur.y +b[i]<=39)
 			{
 				t.setPos(cur.x + a[i], cur.y + b[i]);
+				if(i<=3)t.setG(cur.g+1);
+				else t.setG(cur.g+1.4);
+				t.setH(abs(end.x-t.x)+abs(end.y-t.y));
+				t.setF(t.g+t.h);
+				t.setPPos(cur.x,cur.y);
 				auto oft = open.find(t);
 				int block = meta->getTileGIDAt(Vec2(t.x,t.y));
 				if(close.find(t)!=close.end()||block)
 					continue;
 				if(oft==open.end())
 				{
-					t.setG(cur.g+1);
-					t.setH(abs(end.x-t.x)+abs(end.y-t.y));
-					t.setF(t.g+t.h);
-					t.setPPos(cur.x,cur.y);
 					open.insert(t);
 				}
-				else if(oft->g>cur.g+1)
+				else if(oft->f>t.f)
 				{
 					open.erase(*oft);
-					t.setG(cur.g+1);
-					t.setH(abs(end.x-t.x)+abs(end.y-t.y));
-					t.setF(t.g+t.h);
-					t.setPPos(cur.x,cur.y);
 					open.insert(t);
 				}
-
-				/*if(close.find(t)==close.end() && !block)
-				{
-					t.setG(cur.g+1);
-					t.setH(abs(end.x-t.x)+abs(end.y-t.y));
-					t.setF(t.g+t.h);
-					t.setPPos(cur.x,cur.y);
-					open.insert(t);
-				}*/
 			}
 		}
 	}
@@ -330,12 +292,6 @@ void TileMapScene::Astar(Point S,Point E)
 		cur.setPos(cur.px,cur.py);
 		cur = *close.find(cur);
 	}
-	/*for(int i=vec.size()-1;i>=0;i--)
-	{
-		player->stopAllActions();
-		auto moveTo = MoveTo::create(1,Vec2(vec[i].x*32+bgOrigin.x,(39-vec[i].y)*32+bgOrigin.y));
-		player->runAction(moveTo);
-	}*/
 	count = vec.size()-1;
 }
 
